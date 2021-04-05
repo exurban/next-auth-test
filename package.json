@@ -1,0 +1,43 @@
+{
+  "name": "gibbs_photo",
+  "version": "2.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_ENV=development next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.0",
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.0",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "graphql-tag": "^2.11.0",
+    "next": "latest",
+    "next-seo": "^4.23.0",
+    "next-themes": "^0.0.14",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^1.21.3",
+    "@graphql-codegen/introspection": "^1.18.1",
+    "@graphql-codegen/typescript": "^1.21.1",
+    "@graphql-codegen/typescript-graphql-request": "^3.1.0",
+    "@graphql-codegen/typescript-operations": "^1.17.15",
+    "@tailwindcss/jit": "0.1.3",
+    "@types/node": "^14.14.37",
+    "@types/react": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "autoprefixer": "^10.0.4",
+    "eslint": "^7.23.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss": "^8.1.10",
+    "prettier": "^2.2.1",
+    "stylelint-config-recommended": "^4.0.0",
+    "tailwindcss": "^2.0.2",
+    "typescript": "^4.2.3"
+  }
+}
