@@ -6,7 +6,6 @@
     "dev": "NODE_ENV=development next dev",
     "build": "next build",
     "start": "next start",
-    "postbuild": "next-sitemap",
     "type-check": "tsc",
     "generate": "graphql-codegen --config codegen.yml",
     "lint": "eslint . --ext .ts"
