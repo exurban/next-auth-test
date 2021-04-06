@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
 import merge from "deepmerge";
-import { setContext } from "@apollo/client/link/context";
+// import { setContext } from "@apollo/client/link/context";
 import isEqual from "lodash/isEqual";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
@@ -15,26 +15,27 @@ const httpLink = createHttpLink({
   // uri: "http://localhost:4000/api"
 });
 
-const authLink = setContext(async (_, { headers }) => {
-  if (typeof window !== "undefined") {
-    // const session = await getSession();
-    // if (session && typeof session !== "undefined") {
-    //   const token = session.accessToken;
-    //   return {
-    //     headers: {
-    //       ...headers,
-    //       authorization: token ? `Bearer ${token}` : ""
-    //     }
-    //   };
-    // }
-  }
-  return undefined;
-});
+// const authLink = setContext(async (_, { headers }) => {
+//   if (typeof window !== "undefined") {
+//     const session = await getSession();
+//     if (session && typeof session !== "undefined") {
+//       const token = session.accessToken;
+//       return {
+//         headers: {
+//           ...headers,
+//           authorization: token ? `Bearer ${token}` : ""
+//         }
+//       };
+//     }
+//   }
+//   return undefined;
+// });
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: authLink.concat(httpLink),
+    // link: authLink.concat(httpLink),
+    link: httpLink,
     cache: new InMemoryCache()
   });
 }

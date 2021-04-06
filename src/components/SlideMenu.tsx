@@ -24,9 +24,14 @@ type Props = {
 };
 
 const SlideMenu: React.FC<Props> = ({ photo }) => {
+  const showMenu = () => {
+    console.log({ photo });
+  };
   return (
     <>
-      <DotsVertical />
+      <button onClick={() => showMenu()}>
+        <DotsVertical />
+      </button>
     </>
   );
 };
