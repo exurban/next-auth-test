@@ -7,9 +7,9 @@ const ThemeMenuItem = (): JSX.Element => {
   return (
     <div className="mr-8">
       {theme === "light" ? (
-        <MoonIcon className="h-8 w-8 text-yellow-400" onClick={() => setTheme("dark")} />
+        <MoonIcon className="h-7 w-7 text-yellow-400" onClick={() => setTheme("dark")} />
       ) : (
-        <SunIcon className="h-8 w-8 text-yellow-200" onClick={() => setTheme("light")} />
+        <SunIcon className="h-7 w-7 text-yellow-200" onClick={() => setTheme("light")} />
       )}
     </div>
   );

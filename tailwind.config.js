@@ -26,7 +26,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Inter", ...fontFamily.sans]
+        sans: ["Inter", ...fontFamily.sans],
+        heading: ["Raleway", ...fontFamily.sans]
       },
       spacing: {
         28: "7rem"

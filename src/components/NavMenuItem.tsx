@@ -7,10 +7,10 @@ type Props = {
 
 const NavMenuItem = ({ link, name }: Props): JSX.Element => {
   return (
-    <li className="my-auto p-2">
-      <ActiveLink activeClassName="text-purple-600" href={link}>
+    <li className="my-auto p-2 text-2xl font-heading font-bold text-coolGray-800 hover:text-indigo-600 dark:text-white dark:hover:text-indigo-500">
+      <ActiveLink activeClassName="text-indigo-600 dark:text-indigo-500" href={link}>
         <a>
-          <p className="mx-2 text-2xl font-bold">{name}</p>
+          <p className="mx-2 ">{name}</p>
         </a>
       </ActiveLink>
     </li>

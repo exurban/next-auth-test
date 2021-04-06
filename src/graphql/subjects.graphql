@@ -1,0 +1,16 @@
+query allPhotosOfSubject($input: AllPhotosOfSubjectInput!) {
+  allPhotosOfSubject(input: $input) {
+    subjectInfo {
+      id
+      name
+      description
+      coverImage {
+        ...ImageInfo
+      }
+    }
+    total
+    photos {
+      ...PhotoInfo
+    }
+  }
+}

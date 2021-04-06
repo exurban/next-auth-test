@@ -1,14 +1,34 @@
-import { ShoppingBagIcon } from "@heroicons/react/outline";
-
 const ShoppingBagMenuItem = (): JSX.Element => {
   const showShoppingBag = () => {
     console.log(`show shopping bag`);
   };
 
+  const ShoppingBagIcon = () => {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-7 w-7 "
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1}
+          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+        />
+      </svg>
+    );
+  };
+
   return (
-    <div className="mr-8">
-      <ShoppingBagIcon className="h-8 w-8 text-gray-900" onClick={() => showShoppingBag()} />
-    </div>
+    <button
+      className="mr-6 text-coolGray-800 hover:text-purple-600 dark:text-white dark:hover:text-purple-500"
+      onClick={() => showShoppingBag()}
+    >
+      <ShoppingBagIcon />
+    </button>
   );
 };
 
