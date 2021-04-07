@@ -1,36 +1,17 @@
 // import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { AllPhotosOfSubjectDocument, AllPhotosOfSubjectInput } from "../graphql-operations";
-import Loader from "./Loader";
-import ErrorMessage from "./ErrorMessage";
+import { PhotoInfoFragment } from "../graphql-operations";
 import Slide from "./Slide";
 
 type Props = {
-  input: AllPhotosOfSubjectInput;
+  photos: PhotoInfoFragment[];
 };
 
-const Gallery: React.FC<Props> = ({ input }) => {
+const Gallery: React.FC<Props> = ({ photos }) => {
   // const router = useRouter();
-
-  const { loading, error, data } = useQuery(AllPhotosOfSubjectDocument, {
-    variables: {
-      input: input
-    }
-  });
-
-  if (error) return <ErrorMessage message="Error loading photos." />;
-
-  if (loading) return <Loader />;
-
-  if (!data) return null;
-
-  const { subjectInfo, total, photos } = data.allPhotosOfSubject;
-
-  console.log(subjectInfo, total);
 
   return (
     <>
-      <div className="m-12 grid grid-cols-4 grid-flow-row-dense gap-x-4 gap-y-8 justify-evenly justify-items-center m-4">
+      <div className="m-8 px-12 grid grid-cols-3 grid-flow-row-dense gap-x-4 gap-y-16 justify-evenly justify-items-center">
         {photos.map((photo, idx) => (
           <div key={photo.sku} className="container">
             <Slide photo={photo} priority={idx < 12} />

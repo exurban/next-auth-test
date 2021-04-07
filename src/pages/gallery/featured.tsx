@@ -1,13 +1,11 @@
 import { GetStaticProps } from "next";
-import { initializeApollo, addApolloState } from "../../../lib/apolloClient";
-import { AllPhotosOfSubjectDocument, AllPhotosOfSubjectInput } from "../../../graphql-operations";
+import { initializeApollo, addApolloState } from "../../lib/apolloClient";
+import { AllFeaturedPhotosDocument } from "../../graphql-operations";
 import { NextSeo } from "next-seo";
 
-import SubjectGallery from "../../../components/SubjectGallery";
+import FeaturedGallery from "../../components/FeaturedGallery";
 
-const input = { name: "land" } as AllPhotosOfSubjectInput;
-
-const LandGallery: React.FC = () => {
+const FeatureGallery: React.FC = () => {
   return (
     <>
       <NextSeo
@@ -27,7 +25,7 @@ const LandGallery: React.FC = () => {
           cardType: "summary_large_image"
         }}
       />
-      <SubjectGallery input={input} />
+      <FeaturedGallery />
     </>
   );
 };
@@ -36,8 +34,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
-    query: AllPhotosOfSubjectDocument,
-    variables: { input: input }
+    query: AllFeaturedPhotosDocument
   });
 
   return addApolloState(apolloClient, {
@@ -48,4 +45,4 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 };
 
-export default LandGallery;
+export default FeatureGallery;

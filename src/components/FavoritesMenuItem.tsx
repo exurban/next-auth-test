@@ -7,7 +7,7 @@ const FavoritesMenuItem = (): JSX.Element => {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-7 w-7 dark:color-white"
+        className="h-6 lg:h-7 xl:h-8 2xl:h-9 w-6 lg:w-7 xl:w-8 2xl:w-9 dark:color-white"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

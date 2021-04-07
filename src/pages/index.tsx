@@ -32,8 +32,8 @@ const Home: React.FC = () => {
         />
       </div>
       <div className="flex flex-col w-11/12 max-w-screen-md mx-auto mt-16">
-        <h1 className="font-bold text-4xl">Welcome</h1>
-        <p className="mt-8 text-xl">
+        <h1 className="font-heading text-4xl text-coolGray-800 dark:text-white">Welcome</h1>
+        <p className="mt-8 font-heading text-xl text-coolGray-800 dark:text-white">
           Nature scenes are the creative inspiration for photographers Boyd and Scott Gibbs, a
           father-son team. From single subjects to vast landscapes, their works convey both the
           ephemeral and enduring qualities of the American wilderness.

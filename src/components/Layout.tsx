@@ -9,7 +9,7 @@ const GPLogo = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8"
+      className="h-8 lg:h-10 xl:h-12 2xl:h-14 w-8 lg:w-10 xl:w-12 2xl:w-14"
       fill="currentColor"
       viewBox="0 0 512 512"
       stroke="currentColor"
@@ -34,12 +34,16 @@ const Layout: React.FC = ({ children }) => {
   return (
     <>
       <div className="sticky top-0 z-10 bg-white dark:bg-coolGray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+        <div className="mx-10 xl:mx-20">
+          <div className="flex justify-between items-center py-2 md:justify-start md:space-x-8">
             <nav>
-              <ul className="flex flex-row h-full font-heading">
-                <li className="my-auto p-2 text-2xl font-heading font-bold text-coolGray-800 hover:text-indigo-600 dark:text-white dark:hover:text-indigo-500">
-                  <ActiveLink activeClassName="text-indigo-600 dark:text-indigo-500" href="/">
+              <ul className="flex">
+                <li className="my-auto p-2 text-coolGray-800 hover:text-indigo-600 dark:text-white dark:hover:text-indigo-500">
+                  <ActiveLink
+                    activeClassName="text-indigo-600 dark:text-indigo-500"
+                    href="/"
+                    aria-label="home"
+                  >
                     <a>
                       <GPLogo />
                     </a>
