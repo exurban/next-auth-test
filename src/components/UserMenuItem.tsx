@@ -24,6 +24,7 @@ const UserMenuItem = (): JSX.Element => {
   return (
     <button
       className="mr-6 text-coolGray-800 hover:text-purple-600 dark:text-white dark:hover:text-purple-500"
+      aria-label="user menu"
       onClick={() => signInOut()}
     >
       <UserCircleIcon />

@@ -5,7 +5,7 @@ const ThemeMenuItem = (): JSX.Element => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="mr-8">
+    <div className="mr-8" aria-label="toggle light dark mode">
       {theme === "light" ? (
         <MoonIcon className="h-7 w-7 text-yellow-400" onClick={() => setTheme("dark")} />
       ) : (
