@@ -30,9 +30,9 @@ const Gallery: React.FC<Props> = ({ input }) => {
 
   return (
     <>
-      <div className="container w-full mx-auto mt-20 grid grid-cols-4 grid-flow-row-dense gap-x-4 gap-y-8 justify-evenly justify-items-center m-4">
+      <div className="m-12 grid grid-cols-4 grid-flow-row-dense gap-x-4 gap-y-8 justify-evenly justify-items-center m-4">
         {photos.map((photo, idx) => (
-          <div key={photo.sku} className="container w-full h-full">
+          <div key={photo.sku} className="container">
             <Slide photo={photo} priority={idx < 12} />
           </div>
         ))}

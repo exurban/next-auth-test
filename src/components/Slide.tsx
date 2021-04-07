@@ -17,7 +17,7 @@ const Slide: React.FC<{ photo: PhotoInfoFragment; priority: boolean }> = ({ phot
 
   return (
     <>
-      <div className="flex flex-row" onDoubleClick={() => showInCarousel()}>
+      <div className="flex flex-row items-start" onDoubleClick={() => showInCarousel()}>
         <div className="w-full relative overflow-hidden rounded-md shadow-lg">
           <Image
             src={img.imageUrl}

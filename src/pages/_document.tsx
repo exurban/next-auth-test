@@ -19,6 +19,13 @@ export default class MyDocument extends Document {
             type="font/woff2"
             crossOrigin="anonymous"
           />
+          <link
+            rel="preload"
+            href="/fonts/raleway-v19-latin-700.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
 
           <link
             rel="apple-touch-icon"
