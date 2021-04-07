@@ -3,7 +3,7 @@ import { initializeApollo, addApolloState } from "../../../lib/apolloClient";
 import { AllPhotosOfSubjectDocument, AllPhotosOfSubjectInput } from "../../../graphql-operations";
 import { NextSeo } from "next-seo";
 
-import Gallery from "../../../components/Gallery";
+import SubjectGallery from "../../../components/SubjectGallery";
 
 const input = { name: "bloom" } as AllPhotosOfSubjectInput;
 
@@ -27,7 +27,7 @@ const BloomGallery: React.FC = () => {
           cardType: "summary_large_image"
         }}
       />
-      <Gallery input={input} />
+      <SubjectGallery input={input} />
     </>
   );
 };
