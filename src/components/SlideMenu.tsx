@@ -119,6 +119,7 @@ const SlideMenu: React.FC<Props> = ({ photo }) => {
                     <Menu.Item>
                       {({ active }) => (
                         <a
+                          aria-label="see info"
                           href={`#/image/${photo.sku}`}
                           className={`${
                             active
@@ -133,6 +134,7 @@ const SlideMenu: React.FC<Props> = ({ photo }) => {
                     <Menu.Item>
                       {({ active }) => (
                         <a
+                          aria-label="view larger"
                           href={`#/carousel/subject/land/${photo.sku}`}
                           className={`${
                             active
@@ -147,6 +149,7 @@ const SlideMenu: React.FC<Props> = ({ photo }) => {
                     <Menu.Item onClick={() => addToFavorites()}>
                       {({ active }) => (
                         <a
+                          aria-label="add to favorites"
                           href="#favorites"
                           className={`${
                             active
@@ -161,6 +164,7 @@ const SlideMenu: React.FC<Props> = ({ photo }) => {
                     <Menu.Item onClick={() => addToShoppingBag()}>
                       {({ active }) => (
                         <a
+                          aria-label="add to shopping bag"
                           href="#shoppingBag"
                           className={`${
                             active
