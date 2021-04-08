@@ -54,18 +54,26 @@ const Layout: React.FC = props => {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://gibbs-photography.com${router.asPath}`} />
-        <link rel="canonical" href={`https://gibbs-photography.com${router.asPath}`} />
-        <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Gibbs Photography" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:image" content={meta.image} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@gibbs_photog" />
-        <meta name="twitter:title" content={meta.title} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.image} />
+        <meta
+          property="og:url"
+          content={`https://gibbs-photography.com${router.asPath}`}
+          key="ogurl"
+        />
+        <link
+          rel="canonical"
+          href={`https://gibbs-photography.com${router.asPath}`}
+          key="canonical"
+        />
+        <meta property="og:type" content={meta.type} key="ogtype" />
+        <meta property="og:site_name" content="Gibbs Photography" key="ogsitename" />
+        <meta property="og:description" content={meta.description} key="ogdescription" />
+        <meta property="og:title" content={meta.title} key="ogtitle" />
+        <meta property="og:image" content={meta.image} key="ogimage" />
+        <meta name="twitter:card" content="summary_large_image" key="twittercard" />
+        <meta name="twitter:site" content="@gibbs_photog" key="twittersite" />
+        <meta name="twitter:title" content={meta.title} key="twittertitle" />
+        <meta name="twitter:description" content={meta.description} key="twitterdescription" />
+        <meta name="twitter:image" content={meta.image} key="twitterimage" />
       </Head>
       <div className="sticky top-0 z-10">
         <div className="mx-4 lg:mx-10 xl:mx-20">
