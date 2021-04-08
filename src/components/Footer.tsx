@@ -1,11 +1,14 @@
 const Footer: React.FC = () => {
   return (
     <>
-      <footer className="bg-white">
+      <footer className="bg-white dark:bg-coolGray-900 " aria-label="footer">
+        <h2 id="footerHeading" className="sr-only">
+          Footer
+        </h2>
         <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-          <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+          <nav className="-mx-5 -my-2 flex flex-wrap justify-center text-coolGray-800 dark:text-coolGray-50 dark:hover:text-white">
             <div className="px-5 py-2">
-              <a href="#" className="text-base text-gray-500 hover:text-gray-900">
+              <a href="#" className="text-base">
                 About
               </a>
             </div>

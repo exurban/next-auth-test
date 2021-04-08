@@ -1,28 +1,9 @@
-import { NextSeo } from "next-seo";
 import Link from "next/link";
 import Image from "next/image";
 
 const Home: React.FC = () => {
   return (
     <>
-      <NextSeo
-        title="Gibbs Photography"
-        description="Gibbs Photography | Nature & Landscape Photography"
-        openGraph={{
-          type: "website",
-          locale: "en_US",
-          url: "https://www.gibbs-photography.com",
-          site_name: "Gibbs Photography",
-          title: "Gibbs Photography",
-          description: `Gibbs Photography | Nature & Landscape Photography`
-        }}
-        twitter={{
-          handle: "@gibbs_photog",
-          site: "https://gibbs-photography.com",
-          cardType: "summary_large_image"
-        }}
-      />
-
       <div className="flex flex-col items-center justify-center h-96 xl:h-120 2xl:h-140 max-w-full relative overflow-hidden z-0">
         <Image
           src="https://configcdkstack-gpbucketc7c11d3d-qtgzc43jqi2c.s3.us-east-2.amazonaws.com/photo_1089-1612563104512.webp"

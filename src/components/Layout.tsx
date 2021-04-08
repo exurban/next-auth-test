@@ -1,3 +1,5 @@
+import Head from "next/head";
+import { useRouter } from "next/router";
 import ActiveLink from "./ActiveLink";
 import NavMenuItem from "./NavMenuItem";
 import ThemeMenuItem from "./ThemeMenuItem";
@@ -33,12 +35,39 @@ const GPLogo = () => {
   );
 };
 
-const Layout: React.FC = ({ children }) => {
+const Layout: React.FC = props => {
+  const router = useRouter();
   const largeScreen = useMediaQuery({ query: "(min-width: 1024px)" });
 
+  const { children, ...customMeta } = props;
+  const meta = {
+    title: "Gibbs Photography",
+    description: `Landscape & Wildlife Photography`,
+    type: `website`,
+    image: `https://gibbs-photography.com/images/gibbs_photography.png`,
+    ...customMeta
+  };
+
   return (
-    <div className="min-h-screen">
-      <div className="sticky top-0 z-10 bg-white dark:bg-coolGray-800">
+    <div className="min-h-screen bg-white dark:bg-coolGray-800">
+      <Head>
+        <title>{meta.title}</title>
+        <meta name="robots" content="follow, index" />
+        <meta content={meta.description} name="description" />
+        <meta property="og:url" content={`https://gibbs-photography.com${router.asPath}`} />
+        <link rel="canonical" href={`https://gibbs-photography.com${router.asPath}`} />
+        <meta property="og:type" content={meta.type} />
+        <meta property="og:site_name" content="Gibbs Photography" />
+        <meta property="og:description" content={meta.description} />
+        <meta property="og:title" content={meta.title} />
+        <meta property="og:image" content={meta.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@gibbs_photog" />
+        <meta name="twitter:title" content={meta.title} />
+        <meta name="twitter:description" content={meta.description} />
+        <meta name="twitter:image" content={meta.image} />
+      </Head>
+      <div className="sticky top-0 z-10">
         <div className="mx-4 lg:mx-10 xl:mx-20">
           <div className="flex justify-between items-center py-2  md:space-x-8">
             <nav>
@@ -79,7 +108,8 @@ const Layout: React.FC = ({ children }) => {
         </div>
       </div>
 
-      <main className="min-h-screen bg-white dark:bg-coolGray-800">{children}</main>
+      <main className="min-h-screen bg-white dark:bg-coolGray-800 pb-16 xl:pb-20">{children}</main>
+
       <Footer />
     </div>
   );

@@ -25,7 +25,6 @@ import {
   LinkedinShareButton,
   LinkedinIcon
 } from "react-share";
-import { NextSeo } from "next-seo";
 
 const PhotoInfo: React.FC = () => {
   const router = useRouter();
@@ -52,7 +51,7 @@ const PhotoInfo: React.FC = () => {
 
   const photo: PhotoInfoFragment = data.photoWithSku;
   const image = photo.images[0];
-  const sharingImage = photo.sharingImage || image;
+  // const sharingImage = photo.sharingImage || image;
 
   const pgName = photo?.photographer?.name as string;
   const locationName = photo?.location?.name as string;
@@ -144,37 +143,11 @@ const PhotoInfo: React.FC = () => {
       ? `${photo.description}`
       : `Wildlife & Landscape Photography`;
 
-  const twitterHandle = `@gibbs_photog`;
-  const siteName = `Gibbs Photography`;
   const siteUrl = `https://gibbs-photography.com`;
   const pageUrl = `https://gibbs-photography.com/image/${photo.sku}`;
 
   return (
     <>
-      <NextSeo
-        title={pageTitle}
-        description={description}
-        openGraph={{
-          type: "website",
-          locale: "en_US",
-          url: siteUrl,
-          site_name: siteName,
-          title: pageTitle,
-          description: description,
-          images: [
-            {
-              url: sharingImage.imageUrl,
-              width: sharingImage.width,
-              height: sharingImage.height
-            }
-          ]
-        }}
-        twitter={{
-          handle: twitterHandle,
-          site: siteUrl,
-          cardType: "summary_large_image"
-        }}
-      />
       <div className="container py-4 mx-auto text-coolGray-800 dark:text-white">
         <div className="flex flex-col w-5/6 w-max-w-3xl mx-auto">
           <Image
