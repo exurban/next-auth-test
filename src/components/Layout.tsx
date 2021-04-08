@@ -4,6 +4,9 @@ import ThemeMenuItem from "./ThemeMenuItem";
 import UserMenuItem from "./UserMenuItem";
 import FavoritesMenuItem from "./FavoritesMenuItem";
 import ShoppingBagMenuItem from "./ShoppingBagMenuItem";
+import SideNavMenu from "./SideNavMenu";
+import Footer from "./Footer";
+import { useMediaQuery } from "react-responsive";
 
 const GPLogo = () => {
   return (
@@ -17,27 +20,30 @@ const GPLogo = () => {
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M496 256c0 132.548-107.452 240-240 240S16 388.548 16 256 123.452 16 256 16s240 107.452 240 240zm-3 0c0 130.891-106.109 237-237 237-130.891 0-237-106.109-237-237C19 125.109 125.109 19 256 19c130.891 0 237 106.109 237 237z"
+        d="M486 256c0 127.025-102.975 230-230 230S26 383.025 26 256 128.975 26 256 26s230 102.975 230 230zm-10 0c0 121.503-98.497 220-220 220S36 377.503 36 256 134.497 36 256 36s220 98.497 220 220z"
       />
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M512 256c0 141.385-114.615 256-256 256S0 397.385 0 256 114.615 0 256 0s256 114.615 256 256zm-8 0c0 136.967-111.033 248-248 248C119.033 504 8 392.967 8 256 8 119.033 119.033 8 256 8c136.967 0 248 111.033 248 248z"
+        d="M512 256c0 141.385-114.615 256-256 256S0 397.385 0 256 114.615 0 256 0s256 114.615 256 256zm-15 0c0 133.101-107.899 241-241 241S15 389.101 15 256 122.899 15 256 15s241 107.899 241 241z"
       />
-      <path d="M58.969 208.188c0 69.843 50.312 116.406 123.593 116.406 32.657 0 65.313-8.282 84.063-22.032v-62.968c0-13.906 3.281-17.656 20-19.844v-7.656h-90.469v7.656c17.813 2.188 21.094 5.938 21.094 19.844v65.156c-6.094 5.312-17.812 9.219-31.875 9.219-42.344 0-65-50.157-65-107.969 0-62.188 24.531-103.594 67.031-103.594 33.438 0 55.469 27.5 63.75 64.844h7.344l-1.562-61.094c-12.657-8.437-37.969-14.375-71.876-14.375-69.687 0-126.093 40.157-126.093 116.407z" />
-      <path d="M475.125 277.688c0-42.657-36.719-65.313-101.094-65.313h-98.75v7.656c17.657 3.281 21.094 7.031 21.094 21.094V409.25c0 14.062-3.437 17.812-21.094 21.094V438h99.375v-7.656c-19.375-2.813-22.812-7.969-22.812-23.438v-59.687h22.187c56.563 0 101.094-23.281 101.094-69.531zm-58.437 2.343c0 33.594-18.126 56.25-53.75 57.813l-11.094.468V221.281l11.094.469c37.031 1.562 53.75 25.156 53.75 58.281z" />
+      <path d="M65.158 206.238c0 65.479 47.168 109.131 115.869 109.131 30.616 0 61.231-7.764 78.809-20.654v-59.033c0-13.037 3.076-16.553 18.75-18.604V209.9h-84.815v7.178c16.7 2.051 19.776 5.567 19.776 18.604v61.084c-5.713 4.98-16.699 8.642-29.883 8.642-39.697 0-60.937-47.021-60.937-101.22 0-58.301 22.998-97.12 62.841-97.12 31.348 0 52.002 25.782 59.766 60.791h6.885l-1.465-57.275c-11.865-7.91-35.596-13.477-67.383-13.477-65.332 0-118.213 37.647-118.213 109.131z" />
+      <path d="M462.117 270.707c0-39.99-34.424-61.23-94.775-61.23h-92.578v7.177c16.552 3.076 19.775 6.592 19.775 19.776v157.617c0 13.183-3.223 16.699-19.775 19.775V421h93.164v-7.178c-18.164-2.636-21.387-7.47-21.387-21.972v-55.957h20.801c53.027 0 94.775-21.827 94.775-65.186zm-54.785 2.197c0 31.494-16.992 52.735-50.391 54.2l-10.4.439V217.826l10.4.44c34.717 1.464 50.391 23.584 50.391 54.638z" />
     </svg>
   );
 };
 
 const Layout: React.FC = ({ children }) => {
+  const largeScreen = useMediaQuery({ query: "(min-width: 1024px)" });
+
   return (
-    <>
+    <div className="min-h-screen">
       <div className="sticky top-0 z-10 bg-white dark:bg-coolGray-800">
-        <div className="mx-10 xl:mx-20">
-          <div className="flex justify-between items-center py-2 md:justify-start md:space-x-8">
+        <div className="mx-4 lg:mx-10 xl:mx-20">
+          <div className="flex justify-between items-center py-2  md:space-x-8">
             <nav>
               <ul className="flex">
+                {!largeScreen && <SideNavMenu />}
                 <li className="my-auto p-2 text-coolGray-800 hover:text-indigo-600 dark:text-white dark:hover:text-indigo-500">
                   <ActiveLink
                     activeClassName="text-indigo-600 dark:text-indigo-500"
@@ -49,27 +55,33 @@ const Layout: React.FC = ({ children }) => {
                     </a>
                   </ActiveLink>
                 </li>
-
-                <NavMenuItem name="Featured" link="/gallery/featured" />
-                <NavMenuItem name="Land" link="/gallery/subject/land" />
-                <NavMenuItem name="Water" link="/gallery/subject/water" />
-                <NavMenuItem name="Sky" link="/gallery/subject/sky" />
-                <NavMenuItem name="Bloom" link="/gallery/subject/bloom" />
-                <NavMenuItem name="Bird" link="/gallery/subject/bird" />
-                <NavMenuItem name="Beast" link="/gallery/subject/beast" />
+                {largeScreen && (
+                  <>
+                    <NavMenuItem name="Featured" link="/gallery/featured" />
+                    <NavMenuItem name="Land" link="/gallery/subject/land" />
+                    <NavMenuItem name="Water" link="/gallery/subject/water" />
+                    <NavMenuItem name="Sky" link="/gallery/subject/sky" />
+                    <NavMenuItem name="Bloom" link="/gallery/subject/bloom" />
+                    <NavMenuItem name="Bird" link="/gallery/subject/bird" />
+                    <NavMenuItem name="Beast" link="/gallery/subject/beast" />
+                  </>
+                )}
               </ul>
             </nav>
-            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0"></div>
-            <UserMenuItem />
-            <FavoritesMenuItem />
-            <ShoppingBagMenuItem />
-            <ThemeMenuItem />
+
+            <div className="flex">
+              <UserMenuItem />
+              <FavoritesMenuItem />
+              <ShoppingBagMenuItem />
+              <ThemeMenuItem />
+            </div>
           </div>
         </div>
       </div>
 
       <main className="min-h-screen bg-white dark:bg-coolGray-800">{children}</main>
-    </>
+      <Footer />
+    </div>
   );
 };
 
