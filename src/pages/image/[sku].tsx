@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useQuery, useMutation } from "@apollo/client";
 import { addApolloState, initializeApollo } from "../../lib/apolloClient";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import {
@@ -148,6 +149,19 @@ const PhotoInfo: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <meta property="og:image" content={photo.sharingImage?.imageUrl} key="ogimage" />
+        <meta
+          property="og:image:width"
+          content={photo.sharingImage?.width.toString()}
+          key="ogimagewidth"
+        />
+        <meta
+          property="og:image:height"
+          content={photo.sharingImage?.height.toString()}
+          key="ogimageheight"
+        />
+      </Head>
       <div className="container py-4 mx-auto text-coolGray-800 dark:text-white">
         <div className="flex flex-col w-5/6 w-max-w-3xl mx-auto">
           <Image

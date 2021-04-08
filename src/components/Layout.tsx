@@ -44,7 +44,7 @@ const Layout: React.FC = props => {
     title: "Gibbs Photography",
     description: `Landscape & Wildlife Photography`,
     type: `website`,
-    image: `https://gibbs-photography.com/images/gibbs_photography.png`,
+    image: `https://configcdkstack-gpbucketc7c11d3d-qtgzc43jqi2c.s3.us-east-2.amazonaws.com/1180_share-image-1617560952028.jpeg`,
     ...customMeta
   };
 
@@ -68,14 +68,14 @@ const Layout: React.FC = props => {
         <meta property="og:site_name" content="Gibbs Photography" key="ogsitename" />
         <meta property="og:description" content={meta.description} key="ogdescription" />
         <meta property="og:title" content={meta.title} key="ogtitle" />
-        <meta property="og:image" content={meta.image} key="ogimage" />
+        <meta property="og:image:secure_url" content={meta.image} key="ogimagesecureurl" />
         <meta name="twitter:card" content="summary_large_image" key="twittercard" />
         <meta name="twitter:site" content="@gibbs_photog" key="twittersite" />
         <meta name="twitter:title" content={meta.title} key="twittertitle" />
         <meta name="twitter:description" content={meta.description} key="twitterdescription" />
         <meta name="twitter:image" content={meta.image} key="twitterimage" />
       </Head>
-      <div className="sticky top-0 z-10">
+      <div className="sticky top-0 z-10 bg-white dark:bg-coolGray-800">
         <div className="mx-4 lg:mx-10 xl:mx-20">
           <div className="flex justify-between items-center py-2  md:space-x-8">
             <nav>
