@@ -68,6 +68,7 @@ const Layout: React.FC = props => {
         <meta property="og:site_name" content="Gibbs Photography" key="ogsitename" />
         <meta property="og:description" content={meta.description} key="ogdescription" />
         <meta property="og:title" content={meta.title} key="ogtitle" />
+        <meta property="og:image" content={meta.image} key="ogimage" />
         <meta property="og:image:secure_url" content={meta.image} key="ogimagesecureurl" />
         <meta name="twitter:card" content="summary_large_image" key="twittercard" />
         <meta name="twitter:site" content="@gibbs_photog" key="twittersite" />
