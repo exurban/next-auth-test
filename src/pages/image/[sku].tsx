@@ -174,7 +174,7 @@ const PhotoInfo: React.FC = () => {
             height={image.height}
             sizes="(max-width: 400px) 100vw, 720px"
           />
-          <h2 className="subpixel-antialiased xl:text-3xl xl:font-semibold text-center mt-4 text-coolGray-800 dark:text-white">
+          <h2 className="subpixel-antialiased text-xl md:2xl xl:text-3xl xl:font-semibold text-center mt-4 text-coolGray-800 dark:text-white">
             {photo.title}
           </h2>
           <div className="flex flex-row items-baseline leading-8">
@@ -206,16 +206,16 @@ const PhotoInfo: React.FC = () => {
               <BadgeSecondary text={tag.name} />
             ))}
           </div>
-          <div className="bg-coolGray-100 rounded-md my-4 mx-auto w-1/2">
-            <div className="flex flex-row justify-evenly my-6 lg:my-10">
+          <div className="bg-coolGray-100 dark:bg-coolGray-700 rounded-md my-8 mx-auto">
+            <div className="flex flex-col md:flex-row content-evenly md:justify-evenly m-4 md:m-6 lg:m-10">
               <button
-                className="flex flex-col items-center mx-2 px-4 py-3 max-w-md border border-transparent text-base font-medium rounded-md text-purple-50 bg-indigo-600 shadow-lg hover:bg-purple-600 hover:text-white sm:px-8"
+                className="flex flex-col items-center mx-2 px-4 py-3 m-2 max-w-md border border-transparent text-base font-medium rounded-md text-purple-50 bg-indigo-600 shadow-lg hover:bg-purple-600 hover:text-white sm:px-8"
                 onClick={() => onFavoritesClick()}
               >
                 {inFavorites ? `View in Favorites` : `Add to Favorites`}
               </button>
               <button
-                className="flex flex-col items-center mx-2 px-4 py-3 max-w-md border border-transparent text-base font-medium rounded-md text-purple-50 bg-indigo-600 shadow-lg hover:bg-purple-600 hover:text-white sm:px-8"
+                className="flex flex-col items-center mx-2 px-4 py-3 m-2 max-w-md border border-transparent text-base font-medium rounded-md text-purple-50 bg-indigo-600 shadow-lg hover:bg-purple-600 hover:text-white sm:px-8"
                 onClick={() => onShoppingBagClick()}
               >
                 {inShoppingBag ? `View in Shopping Bag` : `Add to Shopping Bag`}
