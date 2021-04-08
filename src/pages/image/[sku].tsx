@@ -161,6 +161,7 @@ const PhotoInfo: React.FC = () => {
           content={photo.sharingImage?.height.toString()}
           key="ogimageheight"
         />
+        <meta name="twitter:image" content={photo.sharingImage?.imageUrl} key="twitterimage" />
       </Head>
       <div className="container py-4 mx-auto text-coolGray-800 dark:text-white">
         <div className="flex flex-col w-5/6 w-max-w-3xl mx-auto">
