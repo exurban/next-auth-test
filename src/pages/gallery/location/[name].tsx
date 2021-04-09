@@ -47,7 +47,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     "Unknown",
     "Yellowstone National Park"
   ];
-  const paths = locations.map(l => ({ params: { name: encodeURIComponent(l.toLowerCase()) } }));
+  const paths = locations.map(l => ({ params: { name: l.toLowerCase() } }));
   return {
     paths: paths,
     fallback: false
