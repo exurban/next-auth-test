@@ -1813,6 +1813,22 @@ export type UserPreferencesResponse = {
 
 export type UserSearchResult = Subject | Tag | Location;
 
+export type AllPhotosInCollectionQueryVariables = Exact<{
+  input: AllPhotosInCollectionInput;
+}>;
+
+export type AllPhotosInCollectionQuery = { __typename?: "Query" } & {
+  allPhotosInCollection: {
+    __typename?: "AllPhotosInCollectionResponse";
+  } & Pick<AllPhotosInCollectionResponse, "total"> & {
+      collectionInfo: { __typename?: "Collection" } & Pick<
+        Collection,
+        "id" | "name" | "description"
+      > & { coverImage?: Maybe<{ __typename?: "Image" } & ImageInfoFragment> };
+      photos: Array<{ __typename?: "Photo" } & PhotoInfoFragment>;
+    };
+};
+
 export type FrameInfoFragment = { __typename?: "Frame" } & Pick<
   Frame,
   | "id"
@@ -1868,6 +1884,17 @@ export type ImageInfoFragment = { __typename?: "Image" } & Pick<
   | "updatedAt"
 >;
 
+export type AllPhotosAtLocationQueryVariables = Exact<{
+  input: AllPhotosAtLocationInput;
+}>;
+
+export type AllPhotosAtLocationQuery = { __typename?: "Query" } & {
+  allPhotosAtLocation: { __typename?: "AllPhotosAtLocationResponse" } & Pick<
+    AllPhotosAtLocationResponse,
+    "total"
+  > & { photos: Array<{ __typename?: "Photo" } & PhotoInfoFragment> };
+};
+
 export type MatInfoFragment = { __typename?: "Mat" } & Pick<
   Mat,
   | "id"
@@ -1903,6 +1930,26 @@ export type MatInfoFragment = { __typename?: "Mat" } & Pick<
       >
     >;
   };
+
+export type PhotographerInfoFragment = { __typename?: "Photographer" } & Pick<
+  Photographer,
+  "id" | "name" | "firstName" | "lastName" | "email" | "bio"
+> & { coverImage?: Maybe<{ __typename?: "Image" } & ImageInfoFragment> };
+
+export type AllPhotosByPhotographerQueryVariables = Exact<{
+  input: AllPhotosByPhotographerInput;
+}>;
+
+export type AllPhotosByPhotographerQuery = { __typename?: "Query" } & {
+  allPhotosByPhotographer: {
+    __typename?: "AllPhotosByPhotographerResponse";
+  } & Pick<AllPhotosByPhotographerResponse, "total"> & {
+      photographerInfo: {
+        __typename?: "Photographer";
+      } & PhotographerInfoFragment;
+      photos: Array<{ __typename?: "Photo" } & PhotoInfoFragment>;
+    };
+};
 
 export type PhotoInfoFragment = { __typename?: "Photo" } & Pick<
   Photo,
@@ -2036,6 +2083,86 @@ export type PrintInfoFragment = { __typename?: "Print" } & Pick<
   | "updatedAt"
 >;
 
+export type ProductInfoFragment = { __typename?: "Product" } & Pick<
+  Product,
+  "id" | "productSummary" | "totalRetailPrice" | "createdAt" | "updatedAt"
+> & {
+    photo: { __typename?: "Photo" } & PhotoInfoFragment;
+    print: { __typename?: "Print" } & PrintInfoFragment;
+    mat?: Maybe<{ __typename?: "Mat" } & MatInfoFragment>;
+    frame?: Maybe<{ __typename?: "Frame" } & FrameInfoFragment>;
+  };
+
+export type ProductQueryVariables = Exact<{
+  id: Scalars["Int"];
+}>;
+
+export type ProductQuery = { __typename?: "Query" } & {
+  product?: Maybe<
+    { __typename?: "Product" } & Pick<
+      Product,
+      "id" | "productSummary" | "totalRetailPrice" | "createdAt" | "updatedAt"
+    > & {
+        photo: { __typename?: "Photo" } & PhotoInfoFragment;
+        print: { __typename?: "Print" } & PrintInfoFragment;
+        mat?: Maybe<{ __typename?: "Mat" } & MatInfoFragment>;
+        frame?: Maybe<{ __typename?: "Frame" } & FrameInfoFragment>;
+      }
+  >;
+};
+
+export type AddProductMutationVariables = Exact<{
+  input: AddProductInput;
+}>;
+
+export type AddProductMutation = { __typename?: "Mutation" } & {
+  addProduct: { __typename?: "AddProductResponse" } & Pick<
+    AddProductResponse,
+    "success" | "message"
+  > & {
+      newProduct?: Maybe<
+        { __typename?: "Product" } & Pick<Product, "id" | "totalRetailPrice"> & {
+            photo: { __typename?: "Photo" } & PhotoInfoFragment;
+            print: { __typename?: "Print" } & PrintInfoFragment;
+            mat?: Maybe<{ __typename?: "Mat" } & MatInfoFragment>;
+            frame?: Maybe<{ __typename?: "Frame" } & FrameInfoFragment>;
+          }
+      >;
+    };
+};
+
+export type UpdateProductMutationVariables = Exact<{
+  id: Scalars["Int"];
+  input: UpdateProductInput;
+}>;
+
+export type UpdateProductMutation = { __typename?: "Mutation" } & {
+  updateProduct: { __typename?: "UpdateProductResponse" } & Pick<
+    UpdateProductResponse,
+    "success" | "message"
+  > & {
+      updatedProduct?: Maybe<
+        { __typename?: "Product" } & Pick<Product, "id" | "totalRetailPrice"> & {
+            photo: { __typename?: "Photo" } & PhotoInfoFragment;
+            print: { __typename?: "Print" } & PrintInfoFragment;
+            mat?: Maybe<{ __typename?: "Mat" } & MatInfoFragment>;
+            frame?: Maybe<{ __typename?: "Frame" } & FrameInfoFragment>;
+          }
+      >;
+    };
+};
+
+export type DeleteProductMutationVariables = Exact<{
+  id: Scalars["Int"];
+}>;
+
+export type DeleteProductMutation = { __typename?: "Mutation" } & {
+  deleteProduct: { __typename?: "SuccessMessageResponse" } & Pick<
+    SuccessMessageResponse,
+    "success" | "message"
+  >;
+};
+
 export type AllPhotosOfSubjectQueryVariables = Exact<{
   input: AllPhotosOfSubjectInput;
 }>;
@@ -2045,6 +2172,22 @@ export type AllPhotosOfSubjectQuery = { __typename?: "Query" } & {
     AllPhotosOfSubjectResponse,
     "total"
   > & { photos: Array<{ __typename?: "Photo" } & PhotoInfoFragment> };
+};
+
+export type AllPhotosWithTagQueryVariables = Exact<{
+  input: AllPhotosWithTagInput;
+}>;
+
+export type AllPhotosWithTagQuery = { __typename?: "Query" } & {
+  allPhotosWithTag: { __typename?: "AllPhotosWithTagResponse" } & Pick<
+    AllPhotosWithTagResponse,
+    "total"
+  > & {
+      tagInfo: { __typename?: "Tag" } & Pick<Tag, "id" | "name" | "description"> & {
+          coverImage?: Maybe<{ __typename?: "Image" } & ImageInfoFragment>;
+        };
+      photos: Array<{ __typename?: "Photo" } & PhotoInfoFragment>;
+    };
 };
 
 export type AddPhotoToFavoritesMutationVariables = Exact<{
@@ -2148,64 +2291,6 @@ export type GetUserPreferencesQuery = { __typename?: "Query" } & {
   };
 };
 
-export const FrameInfoFragmentDoc: DocumentNode<FrameInfoFragment, unknown> = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "FrameInfo" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Frame" }
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "displayName" } },
-          { kind: "Field", name: { kind: "Name", value: "sortIndex" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "material" } },
-          { kind: "Field", name: { kind: "Name", value: "color" } },
-          { kind: "Field", name: { kind: "Name", value: "printType" } },
-          { kind: "Field", name: { kind: "Name", value: "frameSku" } },
-          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
-          { kind: "Field", name: { kind: "Name", value: "dimension1" } },
-          { kind: "Field", name: { kind: "Name", value: "dimension2" } },
-          { kind: "Field", name: { kind: "Name", value: "retailPrice" } },
-          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "coverImage" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "imageName" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "fileExtension" }
-                },
-                { kind: "Field", name: { kind: "Name", value: "imageUrl" } },
-                { kind: "Field", name: { kind: "Name", value: "altText" } },
-                { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
-                { kind: "Field", name: { kind: "Name", value: "size" } },
-                { kind: "Field", name: { kind: "Name", value: "width" } },
-                { kind: "Field", name: { kind: "Name", value: "height" } },
-                { kind: "Field", name: { kind: "Name", value: "isPortrait" } },
-                { kind: "Field", name: { kind: "Name", value: "isPanoramic" } },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-};
 export const ImageInfoFragmentDoc: DocumentNode<ImageInfoFragment, unknown> = {
   kind: "Document",
   definitions: [
@@ -2237,60 +2322,42 @@ export const ImageInfoFragmentDoc: DocumentNode<ImageInfoFragment, unknown> = {
     }
   ]
 };
-export const MatInfoFragmentDoc: DocumentNode<MatInfoFragment, unknown> = {
+export const PhotographerInfoFragmentDoc: DocumentNode<PhotographerInfoFragment, unknown> = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "MatInfo" },
+      name: { kind: "Name", value: "PhotographerInfo" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "Mat" }
+        name: { kind: "Name", value: "Photographer" }
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
           { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "displayName" } },
-          { kind: "Field", name: { kind: "Name", value: "description" } },
-          { kind: "Field", name: { kind: "Name", value: "color" } },
-          { kind: "Field", name: { kind: "Name", value: "printType" } },
-          { kind: "Field", name: { kind: "Name", value: "matSku" } },
-          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
-          { kind: "Field", name: { kind: "Name", value: "dimension1" } },
-          { kind: "Field", name: { kind: "Name", value: "dimension2" } },
-          { kind: "Field", name: { kind: "Name", value: "retailPrice" } },
-          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+          { kind: "Field", name: { kind: "Name", value: "firstName" } },
+          { kind: "Field", name: { kind: "Name", value: "lastName" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          { kind: "Field", name: { kind: "Name", value: "bio" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "coverImage" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "imageName" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "fileExtension" }
-                },
-                { kind: "Field", name: { kind: "Name", value: "imageUrl" } },
-                { kind: "Field", name: { kind: "Name", value: "altText" } },
-                { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
-                { kind: "Field", name: { kind: "Name", value: "size" } },
-                { kind: "Field", name: { kind: "Name", value: "width" } },
-                { kind: "Field", name: { kind: "Name", value: "height" } },
-                { kind: "Field", name: { kind: "Name", value: "isPortrait" } },
-                { kind: "Field", name: { kind: "Name", value: "isPanoramic" } },
-                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
-                { kind: "Field", name: { kind: "Name", value: "updatedAt" } }
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ImageInfo" }
+                }
               ]
             }
           }
         ]
       }
-    }
+    },
+    ...ImageInfoFragmentDoc.definitions
   ]
 };
 export const PhotoInfoFragmentDoc: DocumentNode<PhotoInfoFragment, unknown> = {
@@ -2516,6 +2583,446 @@ export const PrintInfoFragmentDoc: DocumentNode<PrintInfoFragment, unknown> = {
     }
   ]
 };
+export const MatInfoFragmentDoc: DocumentNode<MatInfoFragment, unknown> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "MatInfo" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Mat" }
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "displayName" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "color" } },
+          { kind: "Field", name: { kind: "Name", value: "printType" } },
+          { kind: "Field", name: { kind: "Name", value: "matSku" } },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+          { kind: "Field", name: { kind: "Name", value: "dimension1" } },
+          { kind: "Field", name: { kind: "Name", value: "dimension2" } },
+          { kind: "Field", name: { kind: "Name", value: "retailPrice" } },
+          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "coverImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "imageName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fileExtension" }
+                },
+                { kind: "Field", name: { kind: "Name", value: "imageUrl" } },
+                { kind: "Field", name: { kind: "Name", value: "altText" } },
+                { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+                { kind: "Field", name: { kind: "Name", value: "size" } },
+                { kind: "Field", name: { kind: "Name", value: "width" } },
+                { kind: "Field", name: { kind: "Name", value: "height" } },
+                { kind: "Field", name: { kind: "Name", value: "isPortrait" } },
+                { kind: "Field", name: { kind: "Name", value: "isPanoramic" } },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "updatedAt" } }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+export const FrameInfoFragmentDoc: DocumentNode<FrameInfoFragment, unknown> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "FrameInfo" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Frame" }
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "displayName" } },
+          { kind: "Field", name: { kind: "Name", value: "sortIndex" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "material" } },
+          { kind: "Field", name: { kind: "Name", value: "color" } },
+          { kind: "Field", name: { kind: "Name", value: "printType" } },
+          { kind: "Field", name: { kind: "Name", value: "frameSku" } },
+          { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+          { kind: "Field", name: { kind: "Name", value: "dimension1" } },
+          { kind: "Field", name: { kind: "Name", value: "dimension2" } },
+          { kind: "Field", name: { kind: "Name", value: "retailPrice" } },
+          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "coverImage" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "imageName" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fileExtension" }
+                },
+                { kind: "Field", name: { kind: "Name", value: "imageUrl" } },
+                { kind: "Field", name: { kind: "Name", value: "altText" } },
+                { kind: "Field", name: { kind: "Name", value: "aspectRatio" } },
+                { kind: "Field", name: { kind: "Name", value: "size" } },
+                { kind: "Field", name: { kind: "Name", value: "width" } },
+                { kind: "Field", name: { kind: "Name", value: "height" } },
+                { kind: "Field", name: { kind: "Name", value: "isPortrait" } },
+                { kind: "Field", name: { kind: "Name", value: "isPanoramic" } },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "updatedAt" } }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
+export const ProductInfoFragmentDoc: DocumentNode<ProductInfoFragment, unknown> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductInfo" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Product" }
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "productSummary" } },
+          { kind: "Field", name: { kind: "Name", value: "totalRetailPrice" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "photo" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "PhotoInfo" }
+                }
+              ]
+            }
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "print" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "PrintInfo" }
+                }
+              ]
+            }
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "mat" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "MatInfo" }
+                }
+              ]
+            }
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "frame" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "FrameInfo" }
+                }
+              ]
+            }
+          },
+          { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+          { kind: "Field", name: { kind: "Name", value: "updatedAt" } }
+        ]
+      }
+    },
+    ...PhotoInfoFragmentDoc.definitions,
+    ...PrintInfoFragmentDoc.definitions,
+    ...MatInfoFragmentDoc.definitions,
+    ...FrameInfoFragmentDoc.definitions
+  ]
+};
+export const AllPhotosInCollectionDocument: DocumentNode<
+  AllPhotosInCollectionQuery,
+  AllPhotosInCollectionQueryVariables
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "allPhotosInCollection" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" }
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "AllPhotosInCollectionInput" }
+            }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "allPhotosInCollection" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "collectionInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "description" }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "coverImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "ImageInfo" }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                { kind: "Field", name: { kind: "Name", value: "total" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photos" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PhotoInfo" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...ImageInfoFragmentDoc.definitions,
+    ...PhotoInfoFragmentDoc.definitions
+  ]
+};
+export const AllPhotosAtLocationDocument: DocumentNode<
+  AllPhotosAtLocationQuery,
+  AllPhotosAtLocationQueryVariables
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "allPhotosAtLocation" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" }
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "AllPhotosAtLocationInput" }
+            }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "allPhotosAtLocation" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "total" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photos" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PhotoInfo" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...PhotoInfoFragmentDoc.definitions
+  ]
+};
+export const AllPhotosByPhotographerDocument: DocumentNode<
+  AllPhotosByPhotographerQuery,
+  AllPhotosByPhotographerQueryVariables
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "allPhotosByPhotographer" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" }
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "AllPhotosByPhotographerInput" }
+            }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "allPhotosByPhotographer" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photographerInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PhotographerInfo" }
+                      }
+                    ]
+                  }
+                },
+                { kind: "Field", name: { kind: "Name", value: "total" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photos" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PhotoInfo" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...PhotographerInfoFragmentDoc.definitions,
+    ...PhotoInfoFragmentDoc.definitions
+  ]
+};
 export const AllFeaturedPhotosDocument: DocumentNode<
   AllFeaturedPhotosQuery,
   AllFeaturedPhotosQueryVariables
@@ -2607,6 +3114,429 @@ export const PhotoWithSkuDocument: DocumentNode<PhotoWithSkuQuery, PhotoWithSkuQ
     ...PhotoInfoFragmentDoc.definitions
   ]
 };
+export const ProductDocument: DocumentNode<ProductQuery, ProductQueryVariables> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "product" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "productSummary" }
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "totalRetailPrice" }
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PhotoInfo" }
+                      }
+                    ]
+                  }
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "print" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PrintInfo" }
+                      }
+                    ]
+                  }
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "mat" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "MatInfo" }
+                      }
+                    ]
+                  }
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "frame" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "FrameInfo" }
+                      }
+                    ]
+                  }
+                },
+                { kind: "Field", name: { kind: "Name", value: "createdAt" } },
+                { kind: "Field", name: { kind: "Name", value: "updatedAt" } }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...PhotoInfoFragmentDoc.definitions,
+    ...PrintInfoFragmentDoc.definitions,
+    ...MatInfoFragmentDoc.definitions,
+    ...FrameInfoFragmentDoc.definitions
+  ]
+};
+export const AddProductDocument: DocumentNode<AddProductMutation, AddProductMutationVariables> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "addProduct" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" }
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "AddProductInput" }
+            }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "addProduct" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "newProduct" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "totalRetailPrice" }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "photo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "PhotoInfo" }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "print" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "PrintInfo" }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mat" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "MatInfo" }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "frame" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "FrameInfo" }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...PhotoInfoFragmentDoc.definitions,
+    ...PrintInfoFragmentDoc.definitions,
+    ...MatInfoFragmentDoc.definitions,
+    ...FrameInfoFragmentDoc.definitions
+  ]
+};
+export const UpdateProductDocument: DocumentNode<
+  UpdateProductMutation,
+  UpdateProductMutationVariables
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "updateProduct" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } }
+          }
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" }
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "UpdateProductInput" }
+            }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateProduct" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" }
+                }
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "updatedProduct" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "totalRetailPrice" }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "photo" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "PhotoInfo" }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "print" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "PrintInfo" }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mat" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "MatInfo" }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "frame" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "FrameInfo" }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...PhotoInfoFragmentDoc.definitions,
+    ...PrintInfoFragmentDoc.definitions,
+    ...MatInfoFragmentDoc.definitions,
+    ...FrameInfoFragmentDoc.definitions
+  ]
+};
+export const DeleteProductDocument: DocumentNode<
+  DeleteProductMutation,
+  DeleteProductMutationVariables
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "deleteProduct" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "deleteProduct" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+};
 export const AllPhotosOfSubjectDocument: DocumentNode<
   AllPhotosOfSubjectQuery,
   AllPhotosOfSubjectQueryVariables
@@ -2672,6 +3602,103 @@ export const AllPhotosOfSubjectDocument: DocumentNode<
         ]
       }
     },
+    ...PhotoInfoFragmentDoc.definitions
+  ]
+};
+export const AllPhotosWithTagDocument: DocumentNode<
+  AllPhotosWithTagQuery,
+  AllPhotosWithTagQueryVariables
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "allPhotosWithTag" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "input" }
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "AllPhotosWithTagInput" }
+            }
+          }
+        }
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "allPhotosWithTag" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "input" }
+                }
+              }
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "tagInfo" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "description" }
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "coverImage" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "ImageInfo" }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                { kind: "Field", name: { kind: "Name", value: "total" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "photos" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "PhotoInfo" }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    ...ImageInfoFragmentDoc.definitions,
     ...PhotoInfoFragmentDoc.definitions
   ]
 };

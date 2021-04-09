@@ -15,6 +15,7 @@ import {
 import Loader from "../../components/Loader";
 import ErrorMessage from "../../components/ErrorMessage";
 import Link from "next/link";
+import { useMediaQuery } from "react-responsive";
 import { photoSkus } from "../../../build-data";
 import { BadgePrimary, BadgeSecondary } from "../../components/Badge";
 
@@ -31,6 +32,9 @@ const PhotoInfo: React.FC = () => {
   const router = useRouter();
   const [isSignedIn] = useState(false);
   const [addToFavorites] = useMutation(AddPhotoToFavoritesDocument);
+
+  const mdScreen = useMediaQuery({ query: "(min-width: 768px)" });
+  const lgScreen = useMediaQuery({ query: "(min-width: 1024px)" });
 
   const { sku } = router.query;
 
@@ -134,7 +138,15 @@ const PhotoInfo: React.FC = () => {
     inShoppingBag ? router.push("/shop/review-order") : router.push(`/shop/options/${photo.sku}`);
   };
 
-  const shareIconSize = 48;
+  const shareIconSize = () => {
+    let size = 36;
+    if (mdScreen) {
+      size = 42;
+    } else if (lgScreen) {
+      size = 48;
+    }
+    return size;
+  };
 
   const pageTitle =
     photo.title && photo.title != "Untitled"
@@ -264,7 +276,7 @@ const PhotoInfo: React.FC = () => {
                 title={pageTitle}
                 hashtags={["nature", "photography"]}
               >
-                <TwitterIcon className="rounded-full" size={shareIconSize} />
+                <TwitterIcon className="rounded-full" size={shareIconSize()} />
               </TwitterShareButton>
               <FacebookShareButton
                 className="mx-2 md:mx-3 lg:mx-4"
@@ -272,7 +284,7 @@ const PhotoInfo: React.FC = () => {
                 title={pageTitle}
                 hashtag={"photography"}
               >
-                <FacebookIcon className="rounded-full" size={shareIconSize} />
+                <FacebookIcon className="rounded-full" size={shareIconSize()} />
               </FacebookShareButton>
               <LinkedinShareButton
                 className="mx-2 md:mx-3 lg:mx-4"
@@ -281,7 +293,7 @@ const PhotoInfo: React.FC = () => {
                 summary={description}
                 source={siteUrl}
               >
-                <LinkedinIcon className="rounded-full" size={shareIconSize} />
+                <LinkedinIcon className="rounded-full" size={shareIconSize()} />
               </LinkedinShareButton>
             </div>
           </div>
