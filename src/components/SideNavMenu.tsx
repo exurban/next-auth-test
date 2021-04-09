@@ -28,7 +28,7 @@ const SideNavMenu: React.FC = () => {
             <>
               <span className="rounded-md shadow-sm">
                 <Menu.Button
-                  className="inline-flex justify-center w-full px-2 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out rounded-md bg-white dark:bg-coolGray-800 hover:text-gray-500 dark:hover:bg-coolGray-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+                  className="inline-flex justify-center w-full px-2 py-2 text-sm font-medium leading-5 text-indigo-700 dark:text-white transition duration-150 ease-in-out rounded-md bg-white dark:bg-coolGray-800 hover:text-gray-500 dark:hover:bg-coolGray-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
                   aria-label="show slide menu"
                 >
                   <MenuIcon />

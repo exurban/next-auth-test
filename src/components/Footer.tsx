@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             <div className="px-5 py-2">
               <a
                 href="/about"
-                className="text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
+                className="text-sm lg:text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
               >
                 About
               </a>
@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             <div className="px-5 py-2">
               <a
                 href="/blog"
-                className="text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
+                className="text-sm lg:text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
               >
                 Blog
               </a>
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
             <div className="px-5 py-2">
               <a
                 href="/legal/privacy-policy"
-                className="text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
+                className="text-sm lg:text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
               >
                 Privacy
               </a>
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
             <div className="px-5 py-2">
               <a
                 href="/legal/terms-of-service"
-                className="text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
+                className="text-sm lg:text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
               >
                 Terms
               </a>
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
             <div className="px-5 py-2">
               <a
                 href="/contact"
-                className="text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
+                className="text-sm lg:text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
               >
                 Contact
               </a>
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
             <div className="px-5 py-2">
               <a
                 href="https://exurban.io"
-                className="text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
+                className="text-sm lg:text-base text-coolGray-600 hover:text-indigo-600 dark:text-coolGray-500 dark:hover:text-white"
               >
                 Built by (ex)urban
               </a>
@@ -101,7 +101,7 @@ const Footer: React.FC = () => {
             </a>
           </div>
 
-          <p className="mt-8 text-center text-base text-coolGray-600">
+          <p className="mt-8 text-center text-sm lg:text-base text-coolGray-600">
             &copy; 2021 Gibbs Photography, LLC. All rights reserved.
           </p>
         </div>
