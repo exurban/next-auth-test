@@ -134,6 +134,8 @@ const PhotoInfo: React.FC = () => {
     inShoppingBag ? router.push("/shop/review-order") : router.push(`/shop/options/${photo.sku}`);
   };
 
+  const shareIconSize = 48;
+
   const pageTitle =
     photo.title && photo.title != "Untitled"
       ? `Gibbs Photography | ${photo.title}`
@@ -183,7 +185,9 @@ const PhotoInfo: React.FC = () => {
             </p>
             <Link href={`/gallery/photographer/${encodeURIComponent(pgName.toLowerCase())}`}>
               <a>
-                <h3>{pgName}</h3>
+                <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl mt-3 lg:mt-4 xl:mt-5 hover:text-indigo-700">
+                  {pgName}
+                </h3>
               </a>
             </Link>
           </div>
@@ -193,7 +197,9 @@ const PhotoInfo: React.FC = () => {
             </p>
             <Link href={`/gallery/location/${encodeURIComponent(locationName.toLowerCase())}`}>
               <a>
-                <h3>{locationName}</h3>
+                <h3 className="text-base md:text-lg lg:text-xl xl:text-2xl mt-2 lg:mt-3 xl:mt-4 hover:text-purple-600">
+                  {locationName}
+                </h3>
               </a>
             </Link>
           </div>
@@ -201,19 +207,11 @@ const PhotoInfo: React.FC = () => {
             <p className="text-xs md:text-sm lg:text-base xl:text-lg uppercase mr-2 text-coolGray-400">
               Description:
             </p>
-            <p>{photo.description}</p>
-          </div>
-          <div className="flex flex-row items-baseline leading-8 mt-2">
-            <p className="text-xs md:text-sm lg:text-base xl:text-lg uppercase mr-2 text-coolGray-400">
-              Related:
+            <p className="text-base md:text-lg lg:text-xl xl:text-2xl mt-2 lg:mt-3 xl:mt-4">
+              {photo.description}
             </p>
-            {subjects?.map(sub => (
-              <BadgePrimary text={sub.name} />
-            ))}
-            {tags?.map(tag => (
-              <BadgeSecondary text={tag.name} />
-            ))}
           </div>
+
           <div className="bg-coolGray-100 dark:bg-coolGray-700 rounded-md my-8 mx-auto">
             <div className="flex flex-col md:flex-row content-evenly p-8">
               <button
@@ -243,36 +241,49 @@ const PhotoInfo: React.FC = () => {
               ))}
             </>
           ) : null}
-          <div className="flex flex-row items-center leading-8">
-            <p className="text-xs md:text-sm lg:text-base xl:text-lg uppercase mr-2 text-coolGray-400">
-              Share:
-            </p>
+          <div className="flex flex-col lg:flex-row justify-start mt-6">
+            <div className="flex flex-row items-center leading-8 flex-auto">
+              <p className="text-xs md:text-sm lg:text-base xl:text-lg uppercase mr-2 text-coolGray-400 ">
+                Related:
+              </p>
+              {subjects?.map(sub => (
+                <BadgePrimary key={sub.name} text={sub.name} />
+              ))}
+              {tags?.map(tag => (
+                <BadgeSecondary key={tag.name} text={tag.name} />
+              ))}
+            </div>
+            <div className="flex flex-row items-center leading-8 mt-6 lg:mt-0 flex-auto">
+              <p className="text-xs md:text-sm lg:text-base xl:text-lg uppercase mr-2 text-coolGray-400">
+                Share:
+              </p>
 
-            <TwitterShareButton
-              className="mx-2 md:mx-3 lg:mx-4"
-              url={pageUrl}
-              title={pageTitle}
-              hashtags={["nature", "photography"]}
-            >
-              <TwitterIcon className="rounded-full" size={36} />
-            </TwitterShareButton>
-            <FacebookShareButton
-              className="mx-2 md:mx-3 lg:mx-4"
-              url={pageUrl}
-              title={pageTitle}
-              hashtag={"photography"}
-            >
-              <FacebookIcon className="rounded-full" size={36} />
-            </FacebookShareButton>
-            <LinkedinShareButton
-              className="mx-2 md:mx-3 lg:mx-4"
-              url={pageUrl}
-              title={pageTitle}
-              summary={description}
-              source={siteUrl}
-            >
-              <LinkedinIcon className="rounded-full" size={36} />
-            </LinkedinShareButton>
+              <TwitterShareButton
+                className="mx-2 md:mx-3 lg:mx-4"
+                url={pageUrl}
+                title={pageTitle}
+                hashtags={["nature", "photography"]}
+              >
+                <TwitterIcon className="rounded-full" size={shareIconSize} />
+              </TwitterShareButton>
+              <FacebookShareButton
+                className="mx-2 md:mx-3 lg:mx-4"
+                url={pageUrl}
+                title={pageTitle}
+                hashtag={"photography"}
+              >
+                <FacebookIcon className="rounded-full" size={shareIconSize} />
+              </FacebookShareButton>
+              <LinkedinShareButton
+                className="mx-2 md:mx-3 lg:mx-4"
+                url={pageUrl}
+                title={pageTitle}
+                summary={description}
+                source={siteUrl}
+              >
+                <LinkedinIcon className="rounded-full" size={shareIconSize} />
+              </LinkedinShareButton>
+            </div>
           </div>
         </div>
       </div>
