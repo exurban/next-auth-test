@@ -42,7 +42,7 @@ const CollectionGallery: React.FC = () => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const collections = [""];
+  const collections = ["bears"];
   const paths = collections.map(coll => ({ params: { name: coll.toLowerCase() } }));
   return {
     paths: paths,
