@@ -17,7 +17,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 import Link from "next/link";
 import { useMediaQuery } from "react-responsive";
 import { photoSkus } from "../../../build-data";
-import { BadgePrimary, BadgeSecondary } from "../../components/Badge";
+import { TagLinkPrimary, TagLinkSecondary } from "../../components/TagLink";
 
 import {
   TwitterShareButton,
@@ -259,10 +259,18 @@ const PhotoInfo: React.FC = () => {
                 Related:
               </p>
               {subjects?.map(sub => (
-                <BadgePrimary key={sub.name} text={sub.name} />
+                <TagLinkPrimary
+                  key={sub.name}
+                  text={sub.name}
+                  url={`/gallery/subject/${encodeURIComponent(sub.name.toLowerCase())}`}
+                />
               ))}
               {tags?.map(tag => (
-                <BadgeSecondary key={tag.name} text={tag.name} />
+                <TagLinkSecondary
+                  key={tag.name}
+                  text={tag.name}
+                  url={`/gallery/tag/${encodeURIComponent(tag.name.toLowerCase())}`}
+                />
               ))}
             </div>
             <div className="flex flex-row items-center leading-8 mt-6 lg:mt-0 flex-auto">
