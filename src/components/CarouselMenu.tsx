@@ -360,7 +360,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
               >
                 <Menu.Items
                   static
-                  className="absolute right-0 w-56 mt-2 origin-top-right bg-white dark:bg-coolGray-700 border border-gray-200 dark:border-coolGray-800 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
+                  className="absolute right-0 w-56 mt-2 origin-top-right bg-white bg-opacity-20 border border-gray-900 divide-y divide-gray-100 rounded-md shadow-lg outline-none"
                 >
                   <div className="py-1">
                     <Menu.Item>
@@ -369,9 +369,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
                           aria-label="info"
                           href={`/image/${photo.sku}`}
                           className={`${
-                            active
-                              ? "bg-gray-100 text-gray-900 dark:bg-coolGray-600 dark:text-coolGray-50"
-                              : "text-gray-700 dark:text-coolGray-100"
+                            active ? "bg-white bg-opacity-30 text-white" : "text-gray-100"
                           }  flex items-center w-full px-4 py-2 text-sm leading-5 text-left`}
                         >
                           <InfoIcon /> <p className="ml-2">Info</p>
@@ -384,9 +382,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
                           aria-label="view in gallery"
                           onClick={() => backToGallery()}
                           className={`${
-                            active
-                              ? "bg-gray-100 text-gray-900 dark:bg-coolGray-600 dark:text-coolGray-50"
-                              : "text-gray-700 dark:text-coolGray-100"
+                            active ? "bg-white bg-opacity-30 text-white" : "text-gray-100"
                           }  flex items-center w-full px-4 py-2 text-sm leading-5 text-left`}
                         >
                           <GalleryIcon /> <p className="ml-2">View In Gallery</p>
@@ -400,9 +396,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
                             aria-label="remove from favorites"
                             href="#favorites"
                             className={`${
-                              active
-                                ? "bg-gray-100 text-gray-900 dark:bg-coolGray-600 dark:text-coolGray-50"
-                                : "text-gray-700 dark:text-coolGray-100"
+                              active ? "bg-white bg-opacity-30 text-white" : "text-gray-100"
                             }  flex items-center w-full px-4 py-2 text-sm leading-5 text-left`}
                           >
                             <MinusIcon /> <p className="ml-2">Remove from Favorites</p>
@@ -416,9 +410,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
                             aria-label="add to favorites"
                             href="#favorites"
                             className={`${
-                              active
-                                ? "bg-gray-100 text-gray-900 dark:bg-coolGray-600 dark:text-coolGray-50"
-                                : "text-gray-700 dark:text-coolGray-100"
+                              active ? "bg-white bg-opacity-30 text-white" : "text-gray-100"
                             }  flex items-center w-full px-4 py-2 text-sm leading-5 text-left`}
                           >
                             <PlusIcon /> <p className="ml-2">Add to Favorites</p>
@@ -433,9 +425,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
                             aria-label="add to shopping bag"
                             href="#shoppingBag"
                             className={`${
-                              active
-                                ? "bg-gray-100 text-gray-900 dark:bg-coolGray-600 dark:text-coolGray-50"
-                                : "text-gray-700 dark:text-coolGray-100"
+                              active ? "bg-white bg-opacity-30  text-white" : "text-gray-100"
                             }  flex items-center w-full px-4 py-2 text-sm leading-5 text-left`}
                           >
                             <EyeIcon />
@@ -450,9 +440,7 @@ const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
                             aria-label="add to shopping bag"
                             href="#shoppingBag"
                             className={`${
-                              active
-                                ? "bg-gray-100 text-gray-900 dark:bg-coolGray-600 dark:text-coolGray-50"
-                                : "text-gray-700 dark:text-coolGray-100"
+                              active ? "bg-white bg-opacity-30  text-white" : "text-gray-100"
                             }  flex items-center w-full px-4 py-2 text-sm leading-5 text-left`}
                           >
                             <PlusIcon /> <p className="ml-2">Add to Shopping Bag</p>

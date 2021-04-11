@@ -33,19 +33,34 @@ body {
   background: #fff;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* overflow: hidden; */
+  position: relative;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  overscroll-behavior-y: none;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+}
+
 [data-theme='dark'],
 [data-theme='dark'] body {
   color: #fff;
   background: #1F2937;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
-h1, h2, h3 {
-  font-weight: bold;
-}
+
+
 
 
 #__next {
@@ -60,3 +75,4 @@ input[type='email'] {
   -moz-appearance: none;
   appearance: none;
 }
+

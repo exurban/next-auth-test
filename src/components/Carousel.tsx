@@ -41,7 +41,6 @@ const Carousel: React.FC<Props> = ({ items, activeIndex, setActiveIndex }) => {
   return (
     <>
       <AliceCarousel
-        autoWidth
         disableButtonsControls={isMobile}
         disableDotsControls
         infinite
