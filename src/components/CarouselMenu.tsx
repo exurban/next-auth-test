@@ -14,7 +14,7 @@ const DotsVertical = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-6 w-6 text-coolGray-800 dark:text-white"
+      className="h-6 w-6 text-white"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -131,10 +131,12 @@ const GalleryIcon = () => {
 };
 
 type Props = {
+  current: number;
+  total: number;
   photo: PhotoInfoFragment;
 };
 
-const CarouselMenu: React.FC<Props> = ({ photo }) => {
+const CarouselMenu: React.FC<Props> = ({ photo, current, total }) => {
   const [session] = useState(false);
   const router = useRouter();
   const client = useApolloClient();
@@ -335,10 +337,15 @@ const CarouselMenu: React.FC<Props> = ({ photo }) => {
             <>
               <span className="rounded-md shadow-sm">
                 <Menu.Button
-                  className="inline-flex justify-center w-full px-2 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out rounded-md bg-white dark:bg-coolGray-800 hover:text-gray-500 dark:hover:bg-coolGray-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
+                  className="inline-flex justify-center w-full pl-3 pr-2 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out rounded-md bg-white bg-opacity-20 hover:bg-opacity-40 text-white focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800"
                   aria-label="show slide menu"
                 >
-                  <DotsVertical />
+                  <div className="flex flex-row items-center">
+                    <p className="mr-2">
+                      {current} of {total}
+                    </p>
+                    <DotsVertical />
+                  </div>
                 </Menu.Button>
               </span>
 

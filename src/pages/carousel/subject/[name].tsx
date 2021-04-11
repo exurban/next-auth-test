@@ -52,9 +52,10 @@ const SubjectCarousel: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="absolute top-2 right-4 text-white py-2 px-4 bg-gray-900 opacity-70 rounded-md flex items-center z-10">
-        {activeIndex + 1} of {total}
-        {activePhoto && <CarouselMenu photo={photos[activeIndex]} />}
+      <div className="absolute top-2 right-4 py-1 px-2 flex items-center z-10">
+        {activePhoto && (
+          <CarouselMenu photo={photos[activeIndex]} current={activeIndex + 1} total={total} />
+        )}
       </div>
 
       <Carousel items={items} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />

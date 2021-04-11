@@ -17,13 +17,13 @@ const CarouselItem: React.FC<Props> = ({ photo, idx }) => {
   return (
     <>
       <div
-        className="rounded-lg"
+        className="rounded-lg mt-10"
         data-value={idx}
         key={idx}
-        style={{ height: isMobile ? `${height}px` : `${height - 160}px` }}
+        style={{ height: isMobile ? `${height}px` : `${height - 100}px` }}
       >
         <Image
-          className="rounded-lg"
+          className="rounded-lg mt-10"
           alt={photo.images?.[0].altText}
           src={photo.images?.[0].imageUrl}
           layout="fill"
