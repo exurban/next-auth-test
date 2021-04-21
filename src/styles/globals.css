@@ -35,7 +35,6 @@ body {
 
 html {
   scroll-behavior: smooth;
-  /* overflow: hidden; */
   position: relative;
 }
 
@@ -57,11 +56,6 @@ h3 {
   color: #fff;
   background: #1F2937;
 }
-
-
-
-
-
 
 #__next {
   display: flex;

@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { ApolloClient, createHttpLink, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
 import merge from "deepmerge";
-// import { setContext } from "@apollo/client/link/context";
+import { setContext } from "@apollo/client/link/context";
 import isEqual from "lodash/isEqual";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
@@ -11,31 +11,29 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | null;
 
 const httpLink = createHttpLink({
   // Server URL (must be absolute url)
-  uri: "https://api.gibbs-photography.com"
-  // uri: "http://localhost:4000/api"
+  // uri: "https://api.gibbs-photography.com"
+  uri: "http://localhost:4000/api"
 });
 
-// const authLink = setContext(async (_, { headers }) => {
-//   if (typeof window !== "undefined") {
-//     const session = await getSession();
-//     if (session && typeof session !== "undefined") {
-//       const token = session.accessToken;
-//       return {
-//         headers: {
-//           ...headers,
-//           authorization: token ? `Bearer ${token}` : ""
-//         }
-//       };
-//     }
-//   }
-//   return undefined;
-// });
+const authLink = setContext(async (_, { headers }) => {
+  if (typeof window !== "undefined") {
+    // const token = await getToken();
+    const token = "";
+    return {
+      headers: {
+        ...headers,
+        Authorization: token ? `Bearer ${token}` : ""
+      }
+    };
+  }
+  return undefined;
+});
 
 function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
-    // link: authLink.concat(httpLink),
-    link: httpLink,
+    link: authLink.concat(httpLink),
+    // link: httpLink,
     cache: new InMemoryCache()
   });
 }
@@ -49,11 +47,11 @@ export function initializeApollo(initialState = null): ApolloClient<NormalizedCa
     // Get existing cache, loaded during client side data fetching
     const existingCache = _apolloClient.extract();
 
-    // Merge the existing cache into data passed from getStaticProps/getServerSideProps
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // const data = merge(initialState as any, existingCache);
+    /* Merge the existing cache into data passed from getStaticProps/getServerSideProps
+    eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const data = merge(initialState as any, existingCache);
 
-    // Merge the existing cache into data passed from getStaticProps/getServerSideProps
+    Merge the existing cache into data passed from getStaticProps/getServerSideProps */
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const data = merge(initialState, existingCache, {

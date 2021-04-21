@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { PhotoInfoFragment } from "../graphql-operations";
 import { Menu, Transition } from "@headlessui/react";
 
@@ -82,6 +83,34 @@ type Props = {
 };
 
 const SlideMenu: React.FC<Props> = ({ photo }) => {
+  const router = useRouter();
+
+  const showInCarousel = () => {
+    let { pathname } = router;
+
+    if (!pathname || typeof pathname !== "string") {
+      return;
+    }
+
+    if (pathname.includes(`gallery`)) {
+      pathname = pathname.replace(`gallery`, `carousel`);
+    }
+
+    if (pathname.includes(`/[name]`)) {
+      pathname = pathname.replace(`/[name]`, "");
+      const { name } = router.query;
+
+      router.push({
+        pathname: `${pathname}/${name}`,
+        query: { sku: photo?.sku }
+      });
+    } else {
+      router.push({
+        pathname: `${pathname}/`,
+        query: { sku: photo?.sku }
+      });
+    }
+  };
   const addToFavorites = () => {
     console.log({ photo });
   };
@@ -134,7 +163,7 @@ const SlideMenu: React.FC<Props> = ({ photo }) => {
                         </a>
                       )}
                     </Menu.Item>
-                    <Menu.Item>
+                    <Menu.Item onClick={() => showInCarousel()}>
                       {({ active }) => (
                         <a
                           aria-label="view larger"
