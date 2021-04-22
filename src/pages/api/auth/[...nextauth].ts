@@ -61,7 +61,7 @@ export default NextAuth({
     async redirect(url, baseUrl) {
       console.log({ url });
       console.log({ baseUrl });
-      return baseUrl;
+      return url;
     },
     // async session(session, user) { return session },
     // async jwt(token, user, account, profile, isNewUser) { return token }
