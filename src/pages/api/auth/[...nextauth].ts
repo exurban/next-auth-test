@@ -52,10 +52,10 @@ export default NextAuth({
   secret: process.env.JWT_SECRET,
 
   callbacks: {
-    async signIn(user, account) {
+    async signIn(user, account, profile) {
       console.log({ user });
       console.log({ account });
-      // console.log({ profile });
+      console.log({ profile });
       return true;
     },
     async redirect(url, baseUrl) {
