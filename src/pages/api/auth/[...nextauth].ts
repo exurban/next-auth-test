@@ -58,11 +58,11 @@ export default NextAuth({
       console.log({ profile });
       return true;
     },
-    async redirect(url, baseUrl) {
-      console.log({ url });
-      console.log({ baseUrl });
-      return `https://www.exurban.io/api/auth/callback/google`;
-    },
+    // async redirect(url, baseUrl) {
+    //   console.log({ url });
+    //   console.log({ baseUrl });
+    //   return `https://www.exurban.io/api/auth/callback/google`;
+    // },
     // async session(session, user) { return session },
     // async jwt(token, user, account, profile, isNewUser) { return token }
   },

@@ -12,7 +12,13 @@ const ProfilePage: React.FC = () => {
         {!session && (
           <>
             <p>Not signed in</p>
-            <button onClick={() => signIn('google')}>Sign In</button>
+            <button
+              onClick={() =>
+                signIn('google', { callbackUrl: `https://www.exurban.io` })
+              }
+            >
+              Sign In
+            </button>
           </>
         )}
         {session && (
