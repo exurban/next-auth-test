@@ -1,7 +1,7 @@
+import { useRouter } from 'next/router';
+
 const UserMenuItem = (): JSX.Element => {
-  const signInOut = () => {
-    console.log(`sign in or out`);
-  };
+  const router = useRouter();
 
   const UserCircleIcon = () => {
     return (
@@ -25,7 +25,7 @@ const UserMenuItem = (): JSX.Element => {
     <button
       className="mr-6 text-coolGray-800 hover:text-purple-600 dark:text-white dark:hover:text-purple-500"
       aria-label="user menu"
-      onClick={() => signInOut()}
+      onClick={() => router.push(`/profile`)}
     >
       <UserCircleIcon />
     </button>
