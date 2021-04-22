@@ -69,7 +69,9 @@ const options: NextAuthOptions = {
     jwt: true,
   },
   jwt: {
+    encryption: false,
     secret: process.env.NEXTAUTH_SECRET,
+    signingKey: process.env.JWT_SIGNING_KEY,
   },
   pages: {
     signIn: '/auth/sign-in',
