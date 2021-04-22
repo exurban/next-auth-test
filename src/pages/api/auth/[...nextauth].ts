@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import NextAuth, { NextAuthOptions, User } from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import Providers from 'next-auth/providers';
 
 // type SigninArgs = {
@@ -11,10 +11,10 @@ import Providers from 'next-auth/providers';
 //   console.log(`Requesting API token with ${args}`);
 // };
 
-interface GPUser extends User {
-  id: number;
-  accessToken?: string;
-}
+// interface GPUser extends User {
+//   id: number;
+//   accessToken?: string;
+// }
 
 const options: NextAuthOptions = {
   providers: [
@@ -92,31 +92,31 @@ const options: NextAuthOptions = {
       console.log(`base url: ${JSON.stringify(baseUrl, null, 2)}`);
       return baseUrl;
     },
-    jwt: async (token, user: GPUser, account) => {
-      console.log(`jwt callback with secret ${process.env.JWT_SECRET}`);
-      console.log(`user: ${JSON.stringify(user, null, 2)}`);
-      console.log(`token: ${JSON.stringify(token, null, 2)}`);
-      if (account?.accessToken) {
-        token.accessToken = account.accessToken;
-      }
-      // if (user && user !== undefined) {
-      //   const signinArgs = {
-      //     userId: user.id,
-      //     email: user.email as string,
-      //   };
+    // jwt: async (token, user: GPUser, account) => {
+    //   console.log(`jwt callback with secret ${process.env.JWT_SECRET}`);
+    //   console.log(`user: ${JSON.stringify(user, null, 2)}`);
+    //   console.log(`token: ${JSON.stringify(token, null, 2)}`);
+    //   if (account?.accessToken) {
+    //     token.accessToken = account.accessToken;
+    //   }
+    //   // if (user && user !== undefined) {
+    //   //   const signinArgs = {
+    //   //     userId: user.id,
+    //   //     email: user.email as string,
+    //   //   };
 
-      //   const apiToken = await getApiToken(signinArgs);
+    //   //   const apiToken = await getApiToken(signinArgs);
 
-      //   token = { ...token, accessToken: apiToken };
-      // }
-      return token;
-    },
-    session: async (session, user: GPUser) => {
-      console.log(`session callback`);
-      session.accessToken = user.accessToken;
+    //   //   token = { ...token, accessToken: apiToken };
+    //   // }
+    //   return token;
+    // },
+    // session: async (session, user: GPUser) => {
+    //   console.log(`session callback`);
+    //   session.accessToken = user.accessToken;
 
-      return Promise.resolve(session);
-    },
+    //   return Promise.resolve(session);
+    // },
   },
 
   events: {
