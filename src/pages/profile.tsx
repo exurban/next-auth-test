@@ -12,7 +12,7 @@ const ProfilePage: React.FC = () => {
         {!session && (
           <>
             <p>Not signed in</p>
-            <button onClick={() => signIn()}>Sign In</button>
+            <button onClick={() => signIn('google')}>Sign In</button>
           </>
         )}
         {session && (
