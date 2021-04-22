@@ -52,7 +52,7 @@ export default NextAuth({
   secret: process.env.JWT_SECRET,
 
   callbacks: {
-    async signIn(user, account, profile) {
+    async signIn(user, account) {
       console.log({ user });
       console.log({ account });
       // console.log({ profile });
