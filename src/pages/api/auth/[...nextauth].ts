@@ -123,27 +123,27 @@ const options: NextAuthOptions = {
 
   events: {
     async signIn(message) {
-      console.log(`sign in message: ${message}`);
+      console.log(`sign in message: ${{ message }}`);
     },
     async signOut(message) {
       /* on signout */
-      console.log(`sign signOut message: ${message}`);
+      console.log(`sign signOut message: ${{ message }}`);
     },
     async createUser(message) {
       /* user created */
-      console.log(`create user message: ${message}`);
+      console.log(`create user message: ${{ message }}`);
     },
     async linkAccount(message) {
       /* account linked to a user */
-      console.log(`LINKED ACCOUNT message: ${message}`);
+      console.log(`LINKED ACCOUNT message: ${{ message }}`);
     },
     async session(message) {
       /* session is active */
-      console.log(`session message: ${message}`);
+      console.log(`session message: ${{ message }}`);
     },
     async error(message) {
       /* error in authentication flow */
-      console.log(`ERROR!!! message: ${message}`);
+      console.log(`ERROR!!! message: ${{ message }}`);
     },
   },
 
