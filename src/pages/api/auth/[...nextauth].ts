@@ -92,10 +92,13 @@ const options: NextAuthOptions = {
       console.log(`base url: ${JSON.stringify(baseUrl, null, 2)}`);
       return baseUrl;
     },
-    jwt: async (token, user: GPUser) => {
+    jwt: async (token, user: GPUser, account) => {
       console.log(`jwt callback with secret ${process.env.JWT_SECRET}`);
       console.log(`user: ${JSON.stringify(user, null, 2)}`);
       console.log(`token: ${JSON.stringify(token, null, 2)}`);
+      if (account?.accessToken) {
+        token.accessToken = account.accessToken;
+      }
       // if (user && user !== undefined) {
       //   const signinArgs = {
       //     userId: user.id,
@@ -106,7 +109,7 @@ const options: NextAuthOptions = {
 
       //   token = { ...token, accessToken: apiToken };
       // }
-      return Promise.resolve(token);
+      return token;
     },
     session: async (session, user: GPUser) => {
       console.log(`session callback`);
