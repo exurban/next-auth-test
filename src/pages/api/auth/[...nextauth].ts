@@ -50,23 +50,20 @@ const options: NextAuthOptions = {
   //   synchronize: true,
   // },
 
-  secret: process.env.JWT_SECRET,
-
-  callbacks: {
-    async signIn(user, account, profile) {
-      console.log({ user });
-      console.log({ account });
-      console.log({ profile });
-      return true;
-    },
-    // async redirect(url, baseUrl) {
-    //   console.log({ url });
-    //   console.log({ baseUrl });
-    //   return `https://www.exurban.io/api/auth/callback/google`;
-    // },
-    // async session(session, user) { return session },
-    // async jwt(token, user, account, profile, isNewUser) { return token }
+  session: {
+    jwt: true,
   },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET,
+  },
+  pages: {
+    signIn: '/auth/sign-in',
+    signOut: '/auth/sign-out',
+    error: '/auth/error',
+    verifyRequest: '/auth/verify-email',
+  },
+
+  callbacks: {},
 
   debug: true,
 };
