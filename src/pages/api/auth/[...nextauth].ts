@@ -55,7 +55,7 @@ export default NextAuth({
     async signIn(user, account, profile) {
       console.log({ user });
       console.log({ account });
-      console.log({ profile });
+      // console.log({ profile });
       return true;
     },
     async redirect(url, baseUrl) {
