@@ -61,7 +61,7 @@ export default NextAuth({
     async redirect(url, baseUrl) {
       console.log({ url });
       console.log({ baseUrl });
-      return url;
+      return `https://www.exurban.io/api/auth/callback/google`;
     },
     // async session(session, user) { return session },
     // async jwt(token, user, account, profile, isNewUser) { return token }
