@@ -18,6 +18,7 @@ const getApiToken = async (args: GetApiTokenInput) => {
     },
   };
   console.log(`Sending request with input: ${JSON.stringify(input, null, 2)}`);
+  console.log(`sending to graphql server at ${api}`);
 
   const token = await graphQLClient.request(GetApiTokenDocument, input);
 
