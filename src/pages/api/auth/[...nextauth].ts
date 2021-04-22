@@ -31,6 +31,7 @@ const options: NextAuthOptions = {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
+    synchronize: true,
     ssl: true,
     extra: {
       ssl: {
