@@ -2,14 +2,14 @@ import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import Providers from 'next-auth/providers';
 
-type SigninArgs = {
-  userId: number;
-  email: string;
-};
+// type SigninArgs = {
+//   userId: number;
+//   email: string;
+// };
 
-const getApiToken = async (args: SigninArgs) => {
-  console.log(`Requesting API token with ${args}`);
-};
+// const getApiToken = async (args: SigninArgs) => {
+//   console.log(`Requesting API token with ${args}`);
+// };
 
 interface GPUser extends User {
   id: number;
@@ -95,16 +95,16 @@ const options: NextAuthOptions = {
     jwt: async (token, user: GPUser) => {
       console.log(`jwt callback`);
       console.log(`user: ${JSON.stringify(user, null, 2)}`);
-      if (user && user !== undefined) {
-        const signinArgs = {
-          userId: user.id,
-          email: user.email as string,
-        };
+      // if (user && user !== undefined) {
+      //   const signinArgs = {
+      //     userId: user.id,
+      //     email: user.email as string,
+      //   };
 
-        const apiToken = await getApiToken(signinArgs);
+      //   const apiToken = await getApiToken(signinArgs);
 
-        token = { ...token, accessToken: apiToken };
-      }
+      //   token = { ...token, accessToken: apiToken };
+      // }
       return Promise.resolve(token);
     },
     session: async (session, user: GPUser) => {
