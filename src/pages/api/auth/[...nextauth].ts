@@ -58,7 +58,11 @@ export default NextAuth({
       console.log({ profile });
       return true;
     },
-    // async redirect(url, baseUrl) { return baseUrl },
+    async redirect(url, baseUrl) {
+      console.log({ url });
+      console.log({ baseUrl });
+      return baseUrl;
+    },
     // async session(session, user) { return session },
     // async jwt(token, user, account, profile, isNewUser) { return token }
   },
