@@ -79,7 +79,22 @@ const options: NextAuthOptions = {
   },
 
   callbacks: {
+    async signIn(user, account, profile) {
+      console.log(`signin callback`);
+      console.log(`user: ${JSON.stringify(user, null, 2)}`);
+      console.log(`account: ${JSON.stringify(account, null, 2)}`);
+      console.log(`profile: ${JSON.stringify(profile, null, 2)}`);
+      return true;
+    },
+    async redirect(url, baseUrl) {
+      console.log(`redirect callback`);
+      console.log(`url: ${JSON.stringify(url, null, 2)}`);
+      console.log(`base url: ${JSON.stringify(baseUrl, null, 2)}`);
+      return baseUrl;
+    },
     jwt: async (token, user: GPUser) => {
+      console.log(`jwt callback`);
+      console.log(`user: ${JSON.stringify(user, null, 2)}`);
       if (user && user !== undefined) {
         const signinArgs = {
           userId: user.id,
@@ -93,9 +108,36 @@ const options: NextAuthOptions = {
       return Promise.resolve(token);
     },
     session: async (session, user: GPUser) => {
+      console.log(`session callback`);
       session.accessToken = user.accessToken;
 
       return Promise.resolve(session);
+    },
+  },
+
+  events: {
+    async signIn(message) {
+      console.log(`sign in message: ${message}`);
+    },
+    async signOut(message) {
+      /* on signout */
+      console.log(`sign signOut message: ${message}`);
+    },
+    async createUser(message) {
+      /* user created */
+      console.log(`create user message: ${message}`);
+    },
+    async linkAccount(message) {
+      /* account linked to a user */
+      console.log(`LINKED ACCOUNT message: ${message}`);
+    },
+    async session(message) {
+      /* session is active */
+      console.log(`session message: ${message}`);
+    },
+    async error(message) {
+      /* error in authentication flow */
+      console.log(`ERROR!!! message: ${message}`);
     },
   },
 
