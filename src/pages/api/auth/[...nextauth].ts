@@ -94,7 +94,7 @@ const options: NextAuthOptions = {
     },
     jwt: async (token, user: GPUser) => {
       console.log(`jwt callback`);
-      console.log(`user: ${JSON.stringify(user, null, 3)}`);
+      console.log(`user: ${JSON.stringify(user, null, 2)}`);
       // if (user && user !== undefined) {
       //   const signinArgs = {
       //     userId: user.id,
