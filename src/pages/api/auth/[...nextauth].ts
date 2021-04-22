@@ -1,7 +1,8 @@
-import NextAuth from 'next-auth';
+import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import Providers from 'next-auth/providers';
 
-export default NextAuth({
+const options: NextAuthOptions = {
   providers: [
     Providers.Apple({
       clientId: process.env.APPLE_ID,
@@ -68,4 +69,10 @@ export default NextAuth({
   },
 
   debug: true,
-});
+};
+
+const authHandler: NextApiHandler = (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => NextAuth(req, res, options);
+export default authHandler;
