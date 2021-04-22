@@ -95,6 +95,7 @@ const options: NextAuthOptions = {
     jwt: async (token, user: GPUser) => {
       console.log(`jwt callback with secret ${process.env.JWT_SECRET}`);
       console.log(`user: ${JSON.stringify(user, null, 2)}`);
+      console.log(`token: ${JSON.stringify(token, null, 2)}`);
       // if (user && user !== undefined) {
       //   const signinArgs = {
       //     userId: user.id,
