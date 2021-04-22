@@ -1,14 +1,27 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import Providers from 'next-auth/providers';
+import { GraphQLClient } from 'graphql-request';
+import {
+  GetApiTokenDocument,
+  GetApiTokenInput,
+} from '../../../graphql-operations';
 
-type SigninArgs = {
-  userId: number;
-  email: string;
-};
+const getApiToken = async (args: GetApiTokenInput) => {
+  console.log(`Requesting API token with ${JSON.stringify(args, null, 2)}`);
+  const api = process.env.API_URI as string;
+  const graphQLClient = new GraphQLClient(api);
 
-const getApiToken = async (args: SigninArgs) => {
-  console.log(`Requesting API token with ${args}`);
+  const input = {
+    input: {
+      ...args,
+    },
+  };
+  console.log(`Sending request with input: ${JSON.stringify(input, null, 2)}`);
+
+  const token = await graphQLClient.request(GetApiTokenDocument, input);
+
+  return token.getApiToken;
 };
 
 interface GPUser extends User {
