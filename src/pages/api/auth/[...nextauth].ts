@@ -1,6 +1,20 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import NextAuth, { NextAuthOptions } from 'next-auth';
+import NextAuth, { NextAuthOptions, User } from 'next-auth';
 import Providers from 'next-auth/providers';
+
+type SigninArgs = {
+  userId: number;
+  email: string;
+};
+
+const getApiToken = async (args: SigninArgs) => {
+  console.log(`Requesting API token with ${args}`);
+};
+
+interface GPUser extends User {
+  id: number;
+  accessToken?: string;
+}
 
 const options: NextAuthOptions = {
   providers: [
@@ -64,7 +78,26 @@ const options: NextAuthOptions = {
     verifyRequest: '/auth/verify-email',
   },
 
-  callbacks: {},
+  callbacks: {
+    jwt: async (token, user: GPUser) => {
+      if (user && user !== undefined) {
+        const signinArgs = {
+          userId: user.id,
+          email: user.email as string,
+        };
+
+        const apiToken = await getApiToken(signinArgs);
+
+        token = { ...token, accessToken: apiToken };
+      }
+      return Promise.resolve(token);
+    },
+    session: async (session, user: GPUser) => {
+      session.accessToken = user.accessToken;
+
+      return Promise.resolve(session);
+    },
+  },
 
   debug: true,
 };
